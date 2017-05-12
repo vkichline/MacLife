@@ -38,7 +38,7 @@ namespace MacLife
             int height = Convert.ToInt32(Configuration["World:Height"] ?? defaultHeight);
             int width =  Convert.ToInt32(Configuration["World:Width"]  ?? defaultWidth);
 
-            World world = new World(height, width);
+            World world = new World(width, height);
             services.AddSingleton<Models.World>(world);
         }
 
