@@ -5,19 +5,19 @@ namespace MacLife.Models
     public class World
     {
         public Cell[,] table;
-		public int width { get; internal set; }  // Size of the world grid
-		public int height { get; internal set; } // Size of the world grid
+        public int width { get; internal set; }  // Size of the world grid
+        public int height { get; internal set; } // Size of the world grid
         public int generation { get; internal set; }
         public string elapsed { get; internal set; }
-		public bool phase = true; // Toggles with each generation so cells can alternated data
+        public bool phase = true; // Toggles with each generation so cells can alternated data
 
-		public World(int h, int v)
+        public World(int h, int v)
         {
-            width  = h;
+            width = h;
             height = v;
-            phase  = false;
+            phase = false;
             generation = 1;
-			elapsed = "";
+            elapsed = "";
             CreateAllCells();
             SetPattern();
         }
@@ -25,41 +25,41 @@ namespace MacLife.Models
         ~World()
         {
             DeleteAllCells();
-		}
+        }
 
         private void CreateAllCells()
         {
-			table = new Cell[width, height];
-			for (int ih = 0; ih < width; ih++)
-			{
-				for (int iv = 0; iv < height; iv++)
-				{
-					table[ih, iv] = new Cell(this, ih, iv);
-				}
-			}
-			for (int ih = 0; ih < width; ih++)
-			{
-				for (int iv = 0; iv < height; iv++)
-				{
-					table[ih, iv].Init();
-				}
-			}
-		}
+            table = new Cell[width, height];
+            for (int ih = 0; ih < width; ih++)
+            {
+                for (int iv = 0; iv < height; iv++)
+                {
+                    table[ih, iv] = new Cell(this, ih, iv);
+                }
+            }
+            for (int ih = 0; ih < width; ih++)
+            {
+                for (int iv = 0; iv < height; iv++)
+                {
+                    table[ih, iv].Init();
+                }
+            }
+        }
 
         private void DeleteAllCells()
         {
-			for (int ih = 0; ih < width; ih++)
-			{
-				for (int iv = 0; iv < height; iv++)
-				{
-					table[ih, iv] = null;
-				}
-			}
-			table = null;
-		}
+            for (int ih = 0; ih < width; ih++)
+            {
+                for (int iv = 0; iv < height; iv++)
+                {
+                    table[ih, iv] = null;
+                }
+            }
+            table = null;
+        }
 
-		// Create a r-pentomino, centered
-		public void SetPattern()
+        // Create a r-pentomino, centered
+        public void SetPattern()
         {
             int v = height / 2;
             int h = width / 2;
@@ -80,10 +80,10 @@ namespace MacLife.Models
                     table[ih, iv].Regenerate();
                 }
             }
-			watch.Stop();
-			elapsed = watch.Elapsed.ToString();
-			generation++;
-			phase = !phase;
+            watch.Stop();
+            elapsed = watch.Elapsed.ToString();
+            generation++;
+            phase = !phase;
         }
 
         public void Reset()

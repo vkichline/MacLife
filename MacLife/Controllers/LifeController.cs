@@ -9,21 +9,21 @@ namespace MacLife.Controllers
 {
     [Route("api/[controller]")]
     public class LifeController : Controller
-	{
-		private World myworld;
+    {
+        private World myworld;
 
         public LifeController(World world)
-		{
-			myworld = world;
-		}
+        {
+            myworld = world;
+        }
 
-		// GET api/values
-		[HttpGet]
-		public World Get()
-		{
+        // GET api/values
+        [HttpGet]
+        public World Get()
+        {
             myworld.Regenerate();  // Do this asynchonously
             return myworld;
-		}
+        }
 
         [HttpPost]
         public ActionResult Post(string action)
@@ -34,5 +34,5 @@ namespace MacLife.Controllers
             }
             return Ok();
         }
-	}
+    }
 }
