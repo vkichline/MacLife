@@ -4,7 +4,7 @@ namespace MacLife.Models
 {
     public class World
     {
-        public Cell[,] table;
+        public Cell[,] table;   // Table is stored as [height, width]
         public int width { get; internal set; }  // Size of the world grid
         public int height { get; internal set; } // Size of the world grid
         public int generation { get; internal set; }
@@ -29,30 +29,30 @@ namespace MacLife.Models
 
         private void CreateAllCells()
         {
-            table = new Cell[width, height];
-            for (int ih = 0; ih < width; ih++)
+            table = new Cell[height, width];
+            for (int iv = 0; iv < height; iv++)
             {
-                for (int iv = 0; iv < height; iv++)
+                for (int ih = 0; ih < width; ih++)
                 {
-                    table[ih, iv] = new Cell(this, ih, iv);
+                    table[iv, ih] = new Cell(this, ih, iv);
                 }
             }
-            for (int ih = 0; ih < width; ih++)
+            for (int iv = 0; iv < height; iv++)
             {
-                for (int iv = 0; iv < height; iv++)
+                for (int ih = 0; ih < width; ih++)
                 {
-                    table[ih, iv].Init();
+                    table[iv, ih].Init();
                 }
             }
         }
 
         private void DeleteAllCells()
         {
-            for (int ih = 0; ih < width; ih++)
+            for (int iv = 0; iv < height; iv++)
             {
-                for (int iv = 0; iv < height; iv++)
+                for (int ih = 0; ih < width; ih++)
                 {
-                    table[ih, iv] = null;
+                    table[iv, ih] = null;
                 }
             }
             table = null;
@@ -63,21 +63,21 @@ namespace MacLife.Models
         {
             int v = height / 2;
             int h = width / 2;
-            table[h, v - 1].value = 1;
-            table[h + 1, v - 1].value = 1;
-            table[h, v].value = 1;
-            table[h - 1, v].value = 1;
-            table[h, v + 1].value = 1;
+            table[v - 1, h].value = 1;
+            table[v - 1, h + 1].value = 1;
+            table[v, h].value = 1;
+            table[v, h - 1].value = 1;
+            table[v + 1, h].value = 1;
         }
 
         public void Regenerate()
         {
             var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            for (int ih = 0; ih < width; ih++)
+            for (int iv = 0; iv < height; iv++)
             {
-                for (int iv = 0; iv < height; iv++)
+                for (int ih = 0; ih < width; ih++)
                 {
-                    table[ih, iv].Regenerate();
+                    table[iv, ih].Regenerate();
                 }
             }
             stopwatch.Stop();

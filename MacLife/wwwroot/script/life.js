@@ -11,11 +11,11 @@
 
                 if(table) {
                     var str = "";
-                    for(var i = 0; i < width; i++)
+                    for(var i = 0; i < height; i++)
                     {
                         str += "<div>"
                         var row = table[i];
-                        for(var j = 0; j < height; j++)
+                        for(var j = 0; j < width; j++)
                         {
                             var cell = row[j];
                             var val = cell.value;

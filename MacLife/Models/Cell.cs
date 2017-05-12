@@ -84,14 +84,14 @@ namespace MacLife.Models
 
         public void Init()
         {
-            neighbors[(int)Position.TopCenter] = world.table[h_pos, FixV(v_pos - 1)];
-            neighbors[(int)Position.TopRight] = world.table[FixH(h_pos + 1), FixV(v_pos - 1)];
-            neighbors[(int)Position.Right] = world.table[FixH(h_pos + 1), v_pos];
-            neighbors[(int)Position.BottomRight] = world.table[FixH(h_pos + 1), FixV(v_pos + 1)];
-            neighbors[(int)Position.Bottom] = world.table[h_pos, FixV(v_pos + 1)];
-            neighbors[(int)Position.BottomLeft] = world.table[FixH(h_pos - 1), FixV(v_pos + 1)];
-            neighbors[(int)Position.Left] = world.table[FixH(h_pos - 1), v_pos];
-            neighbors[(int)Position.TopLeft] = world.table[FixH(h_pos - 1), FixV(v_pos - 1)];
+            neighbors[(int)Position.TopCenter] = world.table[FixV(v_pos - 1), h_pos];
+            neighbors[(int)Position.TopRight] = world.table[FixV(v_pos - 1), FixH(h_pos + 1)];
+            neighbors[(int)Position.Right] = world.table[v_pos, FixH(h_pos + 1)];
+            neighbors[(int)Position.BottomRight] = world.table[FixV(v_pos + 1), FixH(h_pos + 1)];
+            neighbors[(int)Position.Bottom] = world.table[FixV(v_pos + 1), h_pos];
+            neighbors[(int)Position.BottomLeft] = world.table[FixV(v_pos + 1), FixH(h_pos - 1)];
+            neighbors[(int)Position.Left] = world.table[v_pos, FixH(h_pos - 1)];
+            neighbors[(int)Position.TopLeft] = world.table[FixV(v_pos - 1), FixH(h_pos - 1)];
             value = 0;
             private_value = 0;
         }
