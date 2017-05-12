@@ -10,7 +10,7 @@ namespace MacLife.Controllers
     [Route("api/[controller]")]
     public class LifeController : Controller
     {
-        private World myworld;
+        private readonly World myworld;
 
         public LifeController(World world)
         {

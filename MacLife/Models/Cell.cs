@@ -5,7 +5,7 @@ namespace MacLife.Models
     public class Cell
     {
         private enum Position { TopCenter = 0, TopRight, Right, BottomRight, Bottom, BottomLeft, Left, TopLeft }
-        private Cell[] neighbors = new Cell[Enum.GetNames(typeof(Position)).Length];
+        private readonly Cell[] neighbors = new Cell[Enum.GetNames(typeof(Position)).Length];
         private World world;
         private int value_a { get; set; }
         private int value_b { get; set; }
