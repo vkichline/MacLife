@@ -11,7 +11,6 @@ namespace MacLife.Controllers
     public class LifeController : Controller
 	{
 		private World myworld;
-        private Random r = new Random(Environment.TickCount);
 
         public LifeController(World world)
 		{
@@ -25,5 +24,15 @@ namespace MacLife.Controllers
             myworld.Regenerate();  // Do this asynchonously
             return myworld;
 		}
+
+        [HttpPost]
+        public ActionResult Post(string action)
+        {
+            if (action == "reset")
+            {
+                myworld.Reset();
+            }
+            return Ok();
+        }
 	}
 }

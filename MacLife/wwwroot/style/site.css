@@ -2,3 +2,8 @@
     margin-top: 2em;
     font-family: monospace;
 }
+
+.info-bar {
+    background-color: whitesmoke;
+    padding: 0.25em 1em;
+}

@@ -30,9 +30,35 @@
 	        });
 	    }
     }
+
+    function pause()
+    {
+        clearInterval(timer);
+        timer = null;
+    }
+
+    function resume()
+    {
+        if(!timer)
+        {
+            timer = setInterval(refresh, 100);
+        }
+    }
+
+    function reset()
+    {
+        pause();
+        $.post("api/life", { action: "reset"});
+        resume();
+    }
+
     var mount = document.getElementById("world");
     var generation = document.getElementById("generation");
     var timing = document.getElementById("timing");
+    $("#PauseButton").on('click', pause);
+    $("#ResumeButton").on('click', resume);
+    $("#ResetButton").on('click', reset);
+
     refresh();
-    setInterval(refresh, 100);
+    var timer = setInterval(refresh, 100);
 });

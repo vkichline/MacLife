@@ -9,12 +9,18 @@
 </head>
 <body>
     <div class="container">
-        <div class="row" id="world"></div>
-        <div class="row">
-            <span id="generation"></span>
+        <div class="row info-bar">
+            <label for="generation">Generation: </label><span id="generation"></span>
             &nbsp;
-            <span id="timing"></span>
+            <label for="timing">Generation Time: </label><span id="timing"></span>
+
+            <span class="pull-right">
+                <button class="btn btn-xs" id="PauseButton">Pause</button>
+                <button class="btn btn-xs" id="ResumeButton">Continue</button>
+                <button class="btn btn-xs" id="ResetButton">Reset</button>
+            </span>
         </div>
+        <div class="row" id="world"></div>
     </div>
     <script type="text/javascript" src="script/life.js"></script>
 </body>

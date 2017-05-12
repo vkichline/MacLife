@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace MacLife.Models
 {
     public class Cell

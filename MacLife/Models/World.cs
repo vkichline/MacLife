@@ -15,38 +15,47 @@ namespace MacLife.Models
         {
             width  = h;
             height = v;
-            table  = new Cell[h, v];
             phase  = false;
             generation = 1;
 			elapsed = "";
-
-			for (int ih = 0; ih < h; ih++)
-            {
-                for (int iv = 0; iv < v; iv++)
-                {
-                    table[ih, iv] = new Cell(this, ih, iv);
-                }
-            }
-            for (int ih = 0; ih < h; ih++)
-            {
-				for (int iv = 0; iv < v; iv++)
-				{
-					table[ih, iv].Init();
-				}
-			}
+            CreateAllCells();
             SetPattern();
         }
 
         ~World()
         {
+            DeleteAllCells();
+		}
+
+        private void CreateAllCells()
+        {
+			table = new Cell[width, height];
 			for (int ih = 0; ih < width; ih++)
 			{
 				for (int iv = 0; iv < height; iv++)
 				{
-                    table[ih, iv] = null;
+					table[ih, iv] = new Cell(this, ih, iv);
 				}
 			}
-            table = null;
+			for (int ih = 0; ih < width; ih++)
+			{
+				for (int iv = 0; iv < height; iv++)
+				{
+					table[ih, iv].Init();
+				}
+			}
+		}
+
+        private void DeleteAllCells()
+        {
+			for (int ih = 0; ih < width; ih++)
+			{
+				for (int iv = 0; iv < height; iv++)
+				{
+					table[ih, iv] = null;
+				}
+			}
+			table = null;
 		}
 
 		// Create a r-pentomino, centered
@@ -75,6 +84,14 @@ namespace MacLife.Models
 			elapsed = watch.Elapsed.ToString();
 			generation++;
 			phase = !phase;
+        }
+
+        public void Reset()
+        {
+            DeleteAllCells();
+            CreateAllCells();
+            SetPattern();
+            generation = 1;
         }
     }
 }
